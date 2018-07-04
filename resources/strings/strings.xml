@@ -1,0 +1,36 @@
+<strings>
+    <string id="AppName">Tacho</string>
+    
+    <string id="dummyTitle"> </string>
+    <string id="dummyPrompt"> </string>
+    <string id="dummyError"> </string>
+    
+    <string id="pzone0Title">Endurance</string>
+    <string id="pzone0Prompt">start of endurance zone in W</string>
+    <string id="pzone0Error">Value between 0 and 3000 expected. Typical: 136</string>
+    <string id="pzone1Title">Tempo</string>
+    <string id="pzone1Prompt">start of tempo zone in W</string>
+    <string id="pzone1Error">Value between 0 and 3000 expected. Typical: 166</string>
+    <string id="pzone2Title">Threshold</string>
+    <string id="pzone2Prompt">start of threshold zone in W</string>
+    <string id="pzone2Error">Value between 0 and 3000 expected. Typical: 188</string>
+    <string id="pzone3Title">VO2 max</string>
+    <string id="pzone3Prompt">start of VO2 max zone in W</string>
+    <string id="pzone3Error">Value between 0 and 3000 expected. Typical: 210</string>
+    <string id="pzone4Title">Anaerobic</string>
+    <string id="pzone4Prompt">start of anaerobic capacity zone in W</string>
+    <string id="pzone4Error">Value between 0 and 3000 expected. Typical: 242</string>
+    <string id="pzone5Title">Neuromuscular</string>
+    <string id="pzone5Prompt">start of neuromuscular power zone in W</string>
+    <string id="pzone5Error">Value between 0 and 3000 expected. Typical: 300</string>
+    
+    <string id="CrrTitle">Rolling resistance</string>
+    <string id="CrrPrompt">Rolling resistance coefficient</string>
+    <string id="CrrError">Value between 0 and 0.5 expected. Typical: 0.004</string>
+    <string id="CdATitle">Air drag</string>
+    <string id="CdAPrompt">Air drag coefficient times frontal area in square meters</string>
+    <string id="CdAError">Value between 0 and 2 expected. Typical: 0.4</string>
+    <string id="mTitle">Mass</string>
+    <string id="mPrompt">Total mass in kg (rider+bike+bagage)</string>
+    <string id="mError">Value between 10 and 500 expected. Typical: 100</string>
+</strings>

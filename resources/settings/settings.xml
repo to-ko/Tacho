@@ -1,0 +1,38 @@
+<settings>
+    <setting propertyKey="@Properties.dummy2" title="@Strings.dummyTitle" prompt="@Strings.dummyPrompt">
+        <settingConfig type="alphaNumeric" errorMessage="@Strings.dummyError" required="false" readonly="true"/>
+    </setting>
+    <setting propertyKey="@Properties.pzone0" title="@Strings.pzone0Title" prompt="@Strings.pzone0Prompt" helpUrl="https://www.britishcycling.org.uk/membership/article/20120925-Power-Calculator-0">
+        <settingConfig type="numeric" errorMessage="@Strings.pzone0Error" required="true" min="0" max="3000"/>
+    </setting>
+    <setting propertyKey="@Properties.pzone1" title="@Strings.pzone1Title" prompt="@Strings.pzone1Prompt" helpUrl="https://www.britishcycling.org.uk/membership/article/20120925-Power-Calculator-0">
+        <settingConfig type="numeric" errorMessage="@Strings.pzone1Error" required="true" min="0" max="3000"/>
+    </setting>
+    <setting propertyKey="@Properties.pzone2" title="@Strings.pzone2Title" prompt="@Strings.pzone2Prompt" helpUrl="https://www.britishcycling.org.uk/membership/article/20120925-Power-Calculator-0">
+        <settingConfig type="numeric" errorMessage="@Strings.pzone2Error" required="true" min="0" max="3000"/>
+    </setting>
+    <setting propertyKey="@Properties.pzone3" title="@Strings.pzone3Title" prompt="@Strings.pzone3Prompt" helpUrl="https://www.britishcycling.org.uk/membership/article/20120925-Power-Calculator-0">
+        <settingConfig type="numeric" errorMessage="@Strings.pzone3Error" required="true" min="0" max="3000"/>
+    </setting>
+    <setting propertyKey="@Properties.pzone4" title="@Strings.pzone4Title" prompt="@Strings.pzone4Prompt" helpUrl="https://www.britishcycling.org.uk/membership/article/20120925-Power-Calculator-0">
+        <settingConfig type="numeric" errorMessage="@Strings.pzone4Error" required="true" min="0" max="3000"/>
+    </setting>
+   <setting propertyKey="@Properties.pzone5" title="@Strings.pzone5Title" prompt="@Strings.pzone5Prompt" helpUrl="https://www.britishcycling.org.uk/membership/article/20120925-Power-Calculator-0">
+        <settingConfig type="numeric" errorMessage="@Strings.pzone5Error" required="true" min="0" max="3000"/>
+    </setting>
+
+    <setting propertyKey="@Properties.dummy" title="@Strings.dummyTitle" prompt="@Strings.dummyPrompt">
+        <settingConfig type="alphaNumeric" errorMessage="@Strings.dummyError" required="false" readonly="true"/>
+    </setting>
+    <setting propertyKey="@Properties.Crr" title="@Strings.CrrTitle" prompt="@Strings.CrrPrompt" helpUrl="http://www.shmo.de/Tacho">
+        <settingConfig type="numeric" errorMessage="@Strings.CrrError" required="true" min="0" max="1"/>
+    </setting>
+
+    <setting propertyKey="@Properties.CdA" title="@Strings.CdATitle" prompt="@Strings.CdAPrompt" helpUrl="http://www.shmo.de/Tacho">
+        <settingConfig type="numeric" errorMessage="@Strings.CdAError" required="true" min="0" max="2"/>
+    </setting>
+    
+    <setting propertyKey="@Properties.m" title="@Strings.mTitle" prompt="@Strings.mPrompt" helpUrl="http://www.shmo.de/Tacho">
+        <settingConfig type="numeric" errorMessage="@Strings.mError" required="true" min="10" max="500"/>
+    </setting>
+</settings>

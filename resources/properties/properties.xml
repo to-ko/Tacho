@@ -1,0 +1,15 @@
+<properties>
+    <property id="dummy2" type="string">Power zones in W</property>
+    <property id="pzone0" type="float">136</property>
+    <property id="pzone1" type="float">166</property>
+    <property id="pzone2" type="float">188</property>
+    <property id="pzone3" type="float">210</property>
+    <property id="pzone4" type="float">242</property>
+    <property id="pzone5" type="float">300</property>
+
+    <property id="dummy" type="string">Constants for virtual power calculation</property>
+    <property id="Crr" type="float">0.004</property>
+    <property id="CdA" type="float">0.4</property>
+    <property id="m" type="float">100</property>
+</properties>
+
