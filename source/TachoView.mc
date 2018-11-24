@@ -64,9 +64,42 @@ class TachoView extends Ui.DataField {
     var CdA = Application.Properties.getValue("CdA");   // drag coefficient * frontal area in m^2
     var m = Application.Properties.getValue("m");     // mass rider+bike in kg
 
-    function initialize()
+    //function initialize()
+    //{
+    //   DataField.initialize();
+    //}
+
+    function onTimerStart()
     {
-       DataField.initialize();
+        // reset bars and averages
+        if (cd_bar != null)
+        {
+           cd_bar.reset();
+           hr_bar.reset();
+           pw_bar.reset();
+           el_bar.reset();
+        }
+        ed=0;
+        av_power = 0;
+        Npwr2 = 0;
+        onTimerResume();
+    }
+
+    function onTimerResume()
+    {
+       avcd = 0;
+       Ncd = 0;
+       avpwr = 0;
+       Npwr = 0;
+       dist_old = null;
+       alt_old = null;
+       speed_old = null;
+       time_old = null;
+    }
+
+    function onTimerReset()
+    {
+       onTimerStart();
     }
 
     (:ed520)
@@ -83,7 +116,6 @@ class TachoView extends Ui.DataField {
        hr_bar = new superbar(40, dy/2+38,  dx-80,30,pal);
        pal.add(0xff0000);
        pw_bar = new superbar(40, dy/2+100, dx-80,30,pal);
-       return true;
     }
 
     function comp_power(y,v,dx, dy, dv, dt)
@@ -126,6 +158,8 @@ class TachoView extends Ui.DataField {
        return P;
     }
 
+
+
     function compute(info)
     {
        var col = 0;
@@ -144,9 +178,9 @@ class TachoView extends Ui.DataField {
           {
              speed_old = info.currentSpeed;
           }
-          if(time_old == null && info.elapsedTime != null)
+          if(time_old == null && info.timerTime != null)
           {
-             time_old = info.elapsedTime;
+             time_old = info.timerTime;
           }
 
           if(info.currentSpeed != null)
@@ -181,10 +215,10 @@ class TachoView extends Ui.DataField {
           {
              descent = Math.round(info.totalDescent).toNumber();
           }
-          if (info.elapsedTime != null)
+          if (info.timerTime != null)
           {
-             var sec = info.elapsedTime/1000;
-             tot_time = Lang.format("$1$:$2$:$3$",[sec/3600, (sec % 3600)/60, sec % 60]);
+             var sec = info.timerTime/1000;
+             tot_time = (sec/3600).format("%.2d")+":"+((sec % 3600)/60).format("%.2d")+":"+(sec % 60).format("%.2d");
           }
 
           if (info.currentHeading != null)
@@ -194,19 +228,9 @@ class TachoView extends Ui.DataField {
 
           if(info.elapsedDistance!=null)
           {
-             tot_dist = Math.round(info.elapsedDistance*0.001).toNumber();
+             tot_dist = Math.floor(info.elapsedDistance*0.001).toNumber();
 
-             if(info.elapsedDistance < dist_old)
-             {
-                // new activity, reset bars
-                cd_bar.reset();
-                hr_bar.reset();
-                pw_bar.reset();
-                el_bar.reset();
-                ed=0;
-                av_power = 0;
-                Npwr2 = 0;
-             }
+
              // add to 10m averages
              if(info.currentCadence != null)
              {
@@ -245,7 +269,7 @@ class TachoView extends Ui.DataField {
                    // compute 10m virtual power
                    if(alt_old != null && dist_old != null && dist_old != info.elapsedDistance && speed_old != null && time_old != null)
                    {
-                      avpwr = comp_power(info.altitude, info.currentSpeed, info.elapsedDistance-dist_old, info.altitude-alt_old, info.currentSpeed-speed_old, (info.elapsedTime-time_old)*0.001);
+                      avpwr = comp_power(info.altitude, info.currentSpeed, info.elapsedDistance-dist_old, info.altitude-alt_old, info.currentSpeed-speed_old, (info.timerTime-time_old)*0.001);
                       power = avpwr;
                    }
                    // add value to average power estimate
@@ -262,7 +286,7 @@ class TachoView extends Ui.DataField {
                       col++;
                    }
                 }
-                //System.println(avcd+" "+col);
+
                 cd_bar.addval(avcd,col);
                 avcd=0;
                 Ncd =0;
@@ -349,7 +373,7 @@ class TachoView extends Ui.DataField {
                 alt_old   = info.altitude;
                 dist_old  = info.elapsedDistance;
                 speed_old = info.currentSpeed;
-                time_old = info.elapsedTime;
+                time_old = info.timerTime;
              }
           }
        }
@@ -424,7 +448,6 @@ class TachoView extends Ui.DataField {
        }
 
 
-       // speed in grosser schrift
        setCol(dc,Gfx.COLOR_LT_GRAY,Gfx.COLOR_DK_GRAY);
        dc.drawText(xc,yl-r/2+1,Gfx.FONT_XTINY, "km/h",Gfx.TEXT_JUSTIFY_CENTER);
        setCol(dc,Gfx.COLOR_WHITE,Gfx.COLOR_BLACK);
@@ -441,7 +464,7 @@ class TachoView extends Ui.DataField {
 
        dc.drawText(20,9,Gfx.FONT_XTINY,Math.round(System.getSystemStats().battery).toNumber()+ " %",Gfx.TEXT_JUSTIFY_CENTER);
        var today = Time.Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
-       var clockString = Lang.format("$1$:$2$:$3$",[today.hour, today.min, today.sec]);
+       var clockString = today.hour.format("%.2d")+":"+today.min.format("%.2d")+":"+today.sec.format("%.2d");
        dc.drawText(dx/2,0,Gfx.FONT_MEDIUM, clockString, Gfx.TEXT_JUSTIFY_CENTER);
        if(info != null && info.currentLocationAccuracy != null)
        {
